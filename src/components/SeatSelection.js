@@ -20,7 +20,7 @@ const SeatSelection =() =>{
 const [seats,setSeats] = useState([]);
 const [selected,setSelected] =useState(false);
 const navigate = useNavigate();
-    Axios.get("http://localhost:5000/getHallSeats")
+    Axios.get("https://movie-booking-system.herokuapp.com/getHallSeats")
     .then((response)=>{
         setSeats(response.data);
     });

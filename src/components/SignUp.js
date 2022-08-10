@@ -11,7 +11,7 @@ const navigate = useNavigate();
 const [errors,setErrors]=useState([]);
 const signUpHandler =()=>{
     const article = {name:name, lastname:lastname, username:username, password:password}
-    Axios.post("http://localhost:5000/SignUp", article)
+    Axios.post("https://movie-booking-system.herokuapp.com/SignUp", article)
     .then((response)=>{
         if(response.data.a){
             navigate("/");

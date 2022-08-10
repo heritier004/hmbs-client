@@ -17,6 +17,9 @@ const handleOpen =(id)=>{
     localStorage.setItem("selectedSched",id);
     navigate("/SignIn");
 }
+const getBeverage = ()=>{
+    navigate("/Beverage")
+}
     
 return(
 
@@ -28,7 +31,7 @@ return(
            
            {schedules.map((schedule)=>(
         
-                <div className="schedule" id={schedule.id}  onClick = {()=>handleOpen(schedule.id)}>
+                <div className="schedule" id={schedule.id} >
                 {/*onClick={() => handleOpen(schedule)}>*/}
                        <h2> <p className="cinemaTitle">FairField Cinema </p> </h2>
                         <div>
@@ -38,6 +41,8 @@ return(
                         
                             <h5 className="scheduleDetail"><span>{`Start Time :`}</span> <span>{`${new Date(schedule.startTime).getHours()}`+":"+`${new Date(schedule.startTime).getMinutes()}`}</span></h5>
                             <h5 className="scheduleDetail"><span>{`End Time   :`}</span> <span>{`${new Date(schedule.endTime).getHours()}`+":"+`${new Date(schedule.endTime).getMinutes()}`}</span></h5>
+                            <button class="purchaseBeverageBtns"  onClick={()=>getBeverage()}><img style={{width : '30px' , height : '30px'}} src={require('../assets/snack.png')}/></button>
+                            <button class="purchaseBeverageBtns" onClick = {()=>handleOpen(schedule.id)} >continue</button>
                             {/* <h5 className="scheduleDetail"><span>{`Date :`}</span> <span>{`${new Date(schedule.date).getFullYear()}-${new Date(schedule.date).getMonth()}-${new Date(schedule.date).getDate()}`}</span></h5>
                         </div> */}
                         </div>

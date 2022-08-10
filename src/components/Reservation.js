@@ -12,7 +12,7 @@ const arrOfSeats = []
 const navigate = useNavigate();
 selectedSeats.forEach(element => { arrOfSeats.push(element.id)});
 const searchMovies = () =>{
-    Axios.get(`http://localhost:5000/getMovie/${selectedSched}`)
+    Axios.get(`https://movie-booking-system.herokuapp.com/getMovie/${selectedSched}`)
     .then((response)=>{
         setMovieSelected(response.data[0].title);
     });
@@ -24,11 +24,11 @@ useEffect (()=>{
     const makeReservation = ()=>{
         
         const article = {selectedSched :selectedSched , userid: user[0].id}
-        Axios.post(`http://localhost:5000/makeReservation`,article)
+        Axios.post(`https://movie-booking-system.herokuapp.com/makeReservation`,article)
         .then((response)=>{
             if(response.status == 200){
                 console.log(response.data.code);
-         Axios.get(`http://localhost:5000/pdf/${user[0].id}/${selectedSched}/${response.data.code}`, {responseType: 'arraybuffer'})
+         Axios.get(`https://movie-booking-system.herokuapp.com/pdf/${user[0].id}/${selectedSched}/${response.data.code}`, {responseType: 'arraybuffer'})
         .then((res)=>{
             const url = window.URL.createObjectURL(new Blob([res.data]
                 ,{type: "application/pdf"}))
