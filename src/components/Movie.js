@@ -1,5 +1,5 @@
 import bgVideo from "../assets/videoplayback3.MP4"
-import imageLabel from "../assets/bookmyshow.png"
+import imageLabel from "../assets/bookmyshow2.png"
 import searchIcon from "../assets/search2.png"
 import React from "react";
 import { useEffect, useState, useCallback } from "react";
@@ -13,7 +13,7 @@ const Location = () => {
     const navigate = useNavigate();
 
     const searchMovies = () => {
-        Axios.get("https://movie-booking-system.herokuapp.com/movies")
+        Axios.get("https://movie-bookings-system.herokuapp.com/movies")
             .then((response) => {
                 console.log(response.data)
                 setMovies(response.data);
@@ -22,7 +22,7 @@ const Location = () => {
 
     const searchTitle = () => {
         if (title.length > 0) {
-            Axios.post("https://movie-booking-system.herokuapp.com/movie", { title: title })
+            Axios.post("https://movie-bookings-system.herokuapp.com/movie", { title: title })
                 .then((response) => {
                     console.log("we are done.....", response);
                     getMoviesBySearch(response.data);
@@ -41,7 +41,7 @@ const Location = () => {
     }, []);    
 
     const getSchedule = (id) => {
-        Axios.get(`https://movie-booking-system.herokuapp.com/${id}/schedule`)
+        Axios.get(`https://movie-bookings-system.herokuapp.com/${id}/schedule`)
             .then((response) => {
                 localStorage.setItem("schedule", JSON.stringify(response.data));
                 navigate("/schedule");
@@ -55,7 +55,7 @@ const Location = () => {
             <div className="overlay"></div>
             <video src={bgVideo} loop autoPlay muted></video>
             <div className="menuPanel">
-                <img style={{width:'50px', height:'30px'}} src={imageLabel}/>
+                <img style={{width:'180px', height:'110px'}} src={imageLabel}/>
                 <div >
                     <input className="searchBar" placeholder="Enter search phrase" type="text" name="title" onChange={(event) => { setTitle(event.target.value) }}></input>
                     <img  onClick={searchTitle} style={{ width: '55px', height: 'auto' }} src={searchIcon}></img>
@@ -105,6 +105,5 @@ const Location = () => {
         </div>
     );
 }
-
 
 export default Location;

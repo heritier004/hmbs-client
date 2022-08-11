@@ -8,9 +8,8 @@ const [usersData ,setUsersData] = useState([]);
 const navigate = useNavigate();
 const getAllUserreservations =() =>{
     
-    Axios.get(`https://movie-booking-system.herokuapp.com/getUserReservation/${users[0].id}`)
+    Axios.get(`https://movie-bookings-system.herokuapp.com/getUserReservation/${users[0].id}`)
     .then((response)=>{
-        //console.log(users[0].firstname)
         setUsersData(response.data);
 
     });
@@ -23,7 +22,7 @@ const backHome =()=>{
     },[]);
 
     const cancelReservation =(id)=>{
-        Axios.get(`https://movie-booking-system.herokuapp.com/deleteReservation/${id}`)
+        Axios.get(`https://movie-bookings-system.herokuapp.com/deleteReservation/${id}`)
         .then((response)=>{
             window.location.reload();
         })

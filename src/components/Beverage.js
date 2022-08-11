@@ -15,7 +15,6 @@ const getAllBeverages =() =>{
     
     Axios.get(`https://movie-booking-system.herokuapp.com/getBeverages`)
     .then((response)=>{
-        //console.log(users[0].firstname)
         setUsersData(response.data);
 
     });

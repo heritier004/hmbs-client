@@ -8,11 +8,6 @@ let confId =[]
 if(localStorage.getItem("selectedseats")){
     confirmedSeats = JSON.parse(localStorage.getItem("selectedseats"));
     confirmedSeats.forEach((e) => confId.push(e.id));
-    // console.log(confirmedSeats)
-    // confirmedSeats=confirmedSeats.split("");
-    // for(let i =0;i<confirmedSeats.length;i++){
-    //     confirmedSeats[i] = parseInt(confirmedSeats[i]);
-    // }
 }else{
     confirmedSeats = []
 }
@@ -20,7 +15,7 @@ const SeatSelection =() =>{
 const [seats,setSeats] = useState([]);
 const [selected,setSelected] =useState(false);
 const navigate = useNavigate();
-    Axios.get("https://movie-booking-system.herokuapp.com/getHallSeats")
+    Axios.get("https://movie-bookings-system.herokuapp.com/getHallSeats")
     .then((response)=>{
         setSeats(response.data);
     });
