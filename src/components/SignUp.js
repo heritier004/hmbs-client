@@ -16,7 +16,12 @@ const signUpHandler =()=>{
         if(response.data.a){
             navigate("/");
         }else{
-            setErrors("Unable to create new user")
+            if(!(response.data?.errMess === undefined)){
+                setErrors(response.data.errMess)
+            }
+            else{
+                setErrors("Unable to create new user")
+            }
         }
     });    
 }

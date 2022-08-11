@@ -10,6 +10,7 @@ const Location = () => {
     const [movies, setMovies] = useState([]);
     const [moviesByTitle, getMoviesBySearch] = useState([]);
     const [title, setTitle] = useState("");
+    const [flag, setFlag] = useState(false);
     const navigate = useNavigate();
 
     const searchMovies = () => {
@@ -17,6 +18,11 @@ const Location = () => {
             .then((response) => {
                 console.log(response.data)
                 setMovies(response.data);
+                if(JSON.parse((localStorage.getItem("userSigned")))?.length > 0){
+                    setFlag(true);
+                    document.querySelector(".search").innerHTML = "Log Out";
+                    
+                }
             });
     }
 
@@ -48,7 +54,13 @@ const Location = () => {
             });
     }
     const getSignUp = () => {
-        navigate("/signup");
+        if(JSON.parse((localStorage.getItem("userSigned")))?.length > 0){
+            localStorage.removeItem("userSigned");
+            document.querySelector(".search").innerHTML = "Sign In";
+            document.location.reload();
+        }else{
+            navigate("/signup");
+        }
     }
     return (
         <div className="videoPreview">
